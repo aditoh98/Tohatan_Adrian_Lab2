@@ -12,6 +12,6 @@ namespace Tohatan_Adrian_Lab2.Models
         public string Author { get; set; }
         public decimal Price { get; set; }
         public ICollection<Order> Orders { get; set; }
-    
+
     }
 }
