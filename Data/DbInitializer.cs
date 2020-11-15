@@ -50,7 +50,61 @@ namespace Tohatan_Adrian_Lab2.Data
                 context.Orders.Add(e);
             }
             context.SaveChanges();
+
+            var publishers = new Publisher[]
+            {
+
+                new Publisher { PublisherName = "Humanitas", Adress = "Str. Aviatorilor, nr. 40, Bucuresti" },
+                new Publisher { PublisherName = "Nemira", Adress = "Str. Plopilor, nr. 35, Ploiesti" },
+                new Publisher { PublisherName = "Paralela 45", Adress = "Str. Cascadelor, nr. 22, Cluj-Napoca" },
+
+            };
+            foreach (Publisher p in publishers)
+            {
+                context.Publisher.Add(p);
+            }
+            context.SaveChanges();
+
+            var publishedbooks = new PublishedBook[]
+            {
+                new PublishedBook{
+
+                    BookID = books.Single(c => c.Title == "Maytrei").ID,
+                    PublisherID = publishers.Single(i => i.PublisherName == "Humanitas").ID
+
+                    },
+             new PublishedBook {
+                    BookID = books.Single(c => c.Title == "Enigma Otiliei" ).ID,
+                    PublisherID = publishers.Single(i => i.PublisherName =="Humanitas").ID
+                    },
+               new PublishedBook {
+                    BookID = books.Single(c => c.Title == "Baltagul" ).ID,
+                    PublisherID = publishers.Single(i => i.PublisherName =="Nemira").ID
+                    },
+               new PublishedBook {
+                    BookID = books.Single(c => c.Title == "Fata de hartie" ).ID,
+                    PublisherID = publishers.Single(i => i.PublisherName == "Paralela 45").ID
+                    },
+               new PublishedBook {
+                    BookID = books.Single(c => c.Title == "Panza de paianjen" ).ID,
+                    PublisherID = publishers.Single(i => i.PublisherName == "Paralela 45").ID
+                    },
+               new PublishedBook {
+                    BookID = books.Single(c => c.Title == "De veghe in lanul de secara" ).ID,
+                    PublisherID = publishers.Single(i => i.PublisherName == "Paralela 45").ID
+                    },
+            };
+
+            foreach (PublishedBook pb in publishedbooks)
+            {
+                context.PublishedBooks.Add(pb);
+            }
+            context.SaveChanges();
         }
+
     }
 }
+
+
+
 
