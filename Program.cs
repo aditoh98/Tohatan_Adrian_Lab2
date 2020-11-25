@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using Tohatan_Adrian_Lab2.Data;
+using LibraryModel.Data;
 
 namespace Tohatan_Adrian_Lab2
 {

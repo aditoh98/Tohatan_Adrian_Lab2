@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Tohatan_Adrian_Lab2.Models;
-using Tohatan_Adrian_Lab2.Data;
-using Tohatan_Adrian_Lab2.Models.LibraryViewModels;
+using LibraryModel.Models;
+using LibraryModel.Data;
+using LibraryModel.Models.LibraryViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace Tohatan_Adrian_Lab2.Controllers

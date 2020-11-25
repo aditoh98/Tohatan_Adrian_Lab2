@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Tohatan_Adrian_Lab2.Models;
+using LibraryModel.Models;
 
-namespace Tohatan_Adrian_Lab2.Data
+namespace LibraryModel.Data
 {
     public class DbInitializer
     {
@@ -61,7 +61,7 @@ namespace Tohatan_Adrian_Lab2.Data
             };
             foreach (Publisher p in publishers)
             {
-                context.Publisher.Add(p);
+                context.Publishers.Add(p);
             }
             context.SaveChanges();
 

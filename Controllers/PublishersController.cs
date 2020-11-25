@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Tohatan_Adrian_Lab2.Data;
-using Tohatan_Adrian_Lab2.Models;
-using Tohatan_Adrian_Lab2.Models.LibraryViewModels;
+using LibraryModel.Data;
+using LibraryModel.Models;
+using LibraryModel.Models.LibraryViewModels;
 
 namespace Tohatan_Adrian_Lab2.Controllers
 {
@@ -22,7 +22,7 @@ namespace Tohatan_Adrian_Lab2.Controllers
         public async Task<IActionResult> Index(int? id, int? bookID)
         {
             var viewModel = new PublisherIndexData();
-            viewModel.Publishers = await _context.Publisher
+            viewModel.Publishers = await _context.Publishers
                .Include(i => i.PublishedBooks)
                     .ThenInclude(i => i.Book)
                         .ThenInclude(i => i.Orders)
@@ -58,7 +58,7 @@ namespace Tohatan_Adrian_Lab2.Controllers
                 return NotFound();
             }
 
-            var publisher = await _context.Publisher
+            var publisher = await _context.Publishers
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (publisher == null)
             {
@@ -98,7 +98,7 @@ namespace Tohatan_Adrian_Lab2.Controllers
                 return NotFound();
             }
 
-            var publisher = await _context.Publisher.FindAsync(id);
+            var publisher = await _context.Publishers.FindAsync(id);
             if (publisher == null)
             {
                 return NotFound();
@@ -135,7 +135,7 @@ namespace Tohatan_Adrian_Lab2.Controllers
             {
                 return NotFound();
             }
-            var publisherToUpdate = await _context.Publisher
+            var publisherToUpdate = await _context.Publishers
           .Include(i => i.PublishedBooks)
           .ThenInclude(i => i.Book)
       .FirstOrDefaultAsync(m => m.ID == id);
@@ -196,43 +196,39 @@ publisherToUpdate.ID,
                         PublishedBook bookToRemove = publisherToUpdate.PublishedBooks.FirstOrDefault(i
 => i.BookID == book.ID);
                         _context.Remove(bookToRemove);
-
-                        // GET: Publishers/Delete/5
-                        async Task<IActionResult> Delete(int? id)
-                        {
-                            if (id == null)
-                            {
-                                return NotFound();
-                            }
-
-                            var publisher = await _context.Publisher
-                                .FirstOrDefaultAsync(m => m.ID == id);
-                            if (publisher == null)
-                            {
-                                return NotFound();
-                            }
-
-                            return View(publisher);
-                        }
-
-                        // POST: Publishers/Delete/5
-                        [HttpPost, ActionName("Delete")]
-                        [ValidateAntiForgeryToken]
-                        async Task<IActionResult> DeleteConfirmed(int id)
-                        {
-                            var publisher = await _context.Publisher.FindAsync(id);
-                            _context.Publisher.Remove(publisher);
-                            await _context.SaveChangesAsync();
-                            return RedirectToAction(nameof(Index));
-                        }
-
-                        bool PublisherExists(int id)
-                        {
-                            return _context.Publisher.Any(e => e.ID == id);
-                        }
                     }
                 }
             }
+        }
+
+        private async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var publisher = await _context.Publishers
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (publisher == null)
+            {
+                return NotFound();
+            }
+
+            return View(publisher);
+        }
+
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var publisher = await _context.Publishers.FindAsync(id);
+            _context.Publishers.Remove(publisher);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool PublisherExists(int id)
+        {
+            return _context.Publishers.Any(e => e.ID == id);
         }
     }
 }

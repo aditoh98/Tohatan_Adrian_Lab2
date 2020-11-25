@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Tohatan_Adrian_Lab2.Data;
-using Tohatan_Adrian_Lab2.Models;
+using LibraryModel.Data;
+using LibraryModel.Models;
 
 namespace Tohatan_Adrian_Lab2.Controllers
 {

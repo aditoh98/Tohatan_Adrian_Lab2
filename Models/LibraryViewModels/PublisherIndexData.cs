@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Tohatan_Adrian_Lab2.Models.LibraryViewModels
+namespace LibraryModel.Models.LibraryViewModels
 {
     public class PublisherIndexData
     {
